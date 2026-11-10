@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b14"><meta name="description" content="VYRO Studio — browser-based creative video and image editor">
+<title>VYRO STUDIO PRO</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+<div class="boot" id="boot"><div class="boot-mark">V</div><b>VYRO STUDIO</b><span>LOADING CREATIVE ENGINE</span><div class="boot-bar"><i></i></div></div>
+<div class="shell" id="app">
+<header class="topbar">
+ <a class="brand" href="#"><span class="brand-mark">V</span><span>VYRO <small>STUDIO PRO</small></span></a>
+ <div class="project"><span class="live-dot"></span><input id="projectName" value="Untitled Project" aria-label="Project name"><span class="saved" id="saveState">LOCAL PROJECT</span></div>
+ <div class="top-actions"><button class="icon-btn" id="undoBtn" title="Undo">↶</button><button class="icon-btn" id="redoBtn" title="Redo">↷</button><button class="quiet-btn" id="saveProject">Save project</button><button class="gradient-btn" id="exportTop">⇩ Export</button><button class="icon-btn mobile-menu" id="menuBtn">☰</button></div>
+</header>
+<div class="main-layout">
+<aside class="left-rail">
+ <div class="rail-label">CREATE</div>
+ <button class="rail-item selected" data-panel="media"><span>▧</span>Media</button>
+ <button class="rail-item" data-panel="effects"><span>✧</span>Effects</button>
+ <button class="rail-item" data-panel="transitions"><span>◈</span>Transitions</button>
+ <button class="rail-item" data-panel="text"><span>T</span>Text</button>
+ <button class="rail-item" data-panel="audio"><span>♫</span>Audio</button>
+ <button class="rail-item" data-panel="layers"><span>▤</span>Layers</button>
+ <div class="rail-spacer"></div><div class="rail-label">PROJECT</div>
+ <button class="rail-item" data-panel="settings"><span>⚙</span>Settings</button>
+ <div class="rail-bottom"><div class="avatar">VS</div><div><b>VYRO ENGINE</b><small>Browser edition</small></div></div>
+</aside>
+<aside class="asset-panel" id="assetPanel">
+ <div class="panel-heading"><div><span class="eyebrow">YOUR WORKSPACE</span><h2 id="panelTitle">Media library</h2></div><button class="small-icon" id="closePanel">×</button></div>
+ <div class="panel-content" id="panelContent"></div>
+</aside>
+<main class="editor">
+ <div class="preview-toolbar"><div class="view-tabs"><button class="view-tab active">Preview</button><button class="view-tab">Storyboard</button></div><div class="preview-actions"><span id="canvasSize">FIT · 100%</span><button class="small-icon" id="fitBtn" title="Fit preview">⌗</button><button class="small-icon" id="fullscreenBtn" title="Fullscreen">⛶</button></div></div>
+ <div class="preview-wrap" id="previewWrap">
+  <div class="canvas-bg"><div class="canvas" id="canvas">
+   <img id="imagePreview" alt="" hidden><video id="videoPreview" playsinline hidden></video>
+   <div class="caption-preview" id="captionPreview"></div>
+   <div class="empty-state" id="emptyState"><div class="empty-orbit">✦</div><h1>Make something<br><em>unforgettable.</em></h1><p>Drop your media here or import a file to start creating.</p><button class="gradient-btn" id="importHero">＋ Import media</button><span class="support-note">IMAGES · VIDEO · AUDIO</span></div>
+  </div></div>
+  <div class="preview-corner">VYRO <span>PREVIEW</span></div>
+ </div>
+ <div class="playback">
+  <div class="playback-left"><button class="play-btn" id="playBtn">▶</button><button class="small-icon" id="backFrame">|◀</button><button class="small-icon" id="nextFrame">▶|</button><span class="timecode" id="timecode">00:00:00:00</span><span class="time-divider">/</span><span class="timecode muted" id="totalTime">00:00:00:00</span></div>
+  <div class="playback-right"><select id="previewQuality"><option>FULL</option><option>HALF</option><option>QUARTER</option></select><span class="render-dot"></span><span>REALTIME</span></div>
+ </div>
+ <section class="timeline-area">
+  <div class="timeline-header"><div class="timeline-title"><b>Timeline</b><span class="timeline-sub" id="timelineInfo">0 clips · 0 layers</span></div><div class="timeline-tools"><button class="small-icon" id="splitBtn" title="Split at playhead">✂</button><button class="small-icon" id="duplicateBtn" title="Duplicate selected">▣</button><button class="small-icon" id="deleteBtn" title="Delete selected">⌫</button><span class="tool-sep"></span><button class="small-icon" id="zoomOut">−</button><input id="timelineZoom" type="range" min="40" max="180" value="90"><button class="small-icon" id="zoomIn">＋</button></div></div>
+  <div class="timeline-scroll" id="timelineScroll">
+   <div class="ruler" id="ruler"><div class="ruler-origin">00:00</div></div>
+   <div class="tracks" id="tracks">
+    <div class="track-row"><div class="track-label"><span>▰</span> VIDEO 1</div><div class="track-lane" data-track="video"></div></div>
+    <div class="track-row"><div class="track-label"><span>T</span> TEXT</div><div class="track-lane" data-track="text"></div></div>
+    <div class="track-row"><div class="track-label"><span>♫</span> AUDIO</div><div class="track-lane" data-track="audio"></div></div>
+   </div>
+   <div class="playhead" id="playhead"><i></i></div>
+  </div>
+  <div class="timeline-footer"><span>⌘ / CTRL + B  Split clip</span><span>DRAG CLIPS TO REORDER · SELECT TO EDIT</span></div>
+ </section>
+</main>
+<aside class="inspector">
+ <div class="inspector-head"><div><span class="eyebrow">CONTROL ROOM</span><h2>Inspector</h2></div><span class="inspector-live">● LIVE</span></div>
+ <div class="inspector-body" id="inspectorBody"><div class="inspector-empty"><span>✧</span><b>Nothing selected</b><p>Select a clip or import media to access detailed controls.</p></div></div>
+</aside>
+</div>
+<div class="toast-stack" id="toasts"></div>
+<input type="file" id="fileInput" accept="image/*,video/*,audio/*" multiple hidden>
+<input type="file" id="projectInput" accept=".vyro,.json,application/json" hidden>
+</div>
+<script type="module" src="src/main.js"></script>
+</body></html>

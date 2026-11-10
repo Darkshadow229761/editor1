@@ -1,0 +1,9 @@
+{
+  "name": "VYRO Studio Pro",
+  "short_name": "VYRO",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#080a12",
+  "theme_color": "#080a12",
+  "icons": []
+}
